@@ -4,16 +4,21 @@
 
 >mkdir my_get_physical_addresses
 
+![image](https://github.com/user-attachments/assets/db0b2065-caeb-4d9b-8a82-4e612fffb413)
+
+
 
 2.進入所建的資料夾
 
 > cd my_get_physical_addresses
 
+![image](https://github.com/user-attachments/assets/47bcf608-91d1-4510-939b-07242250f112)
 
 3.新增system call
 
 > touch my_get_physical_addresses.c
 
+![image](https://github.com/user-attachments/assets/3c73cdcb-2949-4033-8607-f7b1e6992a53)
 
 4.編輯my_get_physical_addresses.c
 
@@ -26,6 +31,7 @@
 ![image](https://github.com/user-attachments/assets/f886bcb8-7930-4710-8ca4-db6c1f7cfb3f)
 
 # trace code
+
 (1)
 
 https://elixir.bootlin.com/linux/v5.15.137/source/include/linux/syscalls.h#L223
@@ -68,16 +74,18 @@ https://elixir.bootlin.com/linux/v5.15.137/source/include/linux/mm_types.h#L779
 ![image](https://github.com/user-attachments/assets/be4a7c0b-c9da-4ae3-bbcd-4264ad32d19a)
 
 (4)
+
 https://elixir.bootlin.com/linux/v5.15.137/source/arch/x86/include/asm/pgtable.h
 
 https://elixir.bootlin.com/linux/v5.15.137/source/include/linux/pgtable.h
 
 這兩個連結可以知道
+
 提供頁表操作的輔助函數 (pgd_offset, p4d_offset, pud_offset,pmd_offset,pgd_none pgd_bad,p4d_none p4d_bad,pud_none pud_bad,pmd_none pmd_bad,pte_none,pte_offset_map)
 
 (一). none
 
-pgd_none(*pgd), p4d_none(*p4d), 等等。
+>pgd_none(*pgd), p4d_none(*p4d), 等等。
 
 這些函數用於檢查特定頁表條目是否「不存在」。
 
@@ -87,7 +95,7 @@ pgd_none(*pgd), p4d_none(*p4d), 等等。
 
 (二). bad
 
-pgd_bad(*pgd), p4d_bad(*p4d), 等等。
+>pgd_bad(*pgd), p4d_bad(*p4d), 等等。
 
 這些函數用於檢查頁表條目是否「無效」。
 
