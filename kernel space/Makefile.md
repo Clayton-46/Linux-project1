@@ -2,15 +2,15 @@
 
 到 Kernel Archive 下載 kernel source，選擇 5.15.137 kernel。
 
-# 進入 root 模式
+>#進入 root 模式
 
 > sudo su
 
-# 也可以用這個指令來下載kernel
+>#也可以用這個指令來下載kernel
 
 > wget -P ~/ https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.137.tar.xz
 
-# 把檔案解壓縮到 /usr/src 目錄底下
+>#把檔案解壓縮到 /usr/src 目錄底下
 
 >tar -xvf linux-5.15.137.tar.xz -C /usr/src
 
@@ -19,7 +19,7 @@
 >sudo apt update && sudo apt upgrade -y
 先把會用到的套件安裝好
 
-# 這個套件可以幫我們 build 出 kernel-pakage
+>#這個套件可以幫我們 build 出 kernel-pakage
 
 sudo apt install build-essential libncurses-dev libssl-dev libelf-dev bison flex -y
 
@@ -35,15 +35,15 @@ sudo apt install build-essential libncurses-dev libssl-dev libelf-dev bison flex
 
 建立資料夾
 
-# 把目錄轉到剛剛解壓縮完的 kernel 檔案夾
+>#把目錄轉到剛剛解壓縮完的 kernel 檔案夾
 
-cd /usr/src/linux-5.15.137
+>cd /usr/src/linux-5.15.137
 
-# 在裡面創建一個名叫 hello 的資料夾
+>#在裡面創建一個名叫 hello 的資料夾
 
-mkdir hello
+>mkdir hello
 
-# 把目錄轉到 hello 資料夾
+>#把目錄轉到 hello 資料夾
 
 cd hello
 建立 hello.c
@@ -60,11 +60,11 @@ Makefile 的內容
 
 接著回上個目錄改 Makefile
 
-# 回上個目錄
+>#回上個目錄
 
 >cd ..
 
-# 打開此目錄下的 Makefile
+>#打開此目錄下的 Makefile
 
 >vim Makefile
 
@@ -84,7 +84,7 @@ Makefile 的內容
 
 接著編輯 syscalls.h 檔，將 syscall 的原型添加進檔案 (#endif之前)
 
-# 把目錄轉回去
+>#把目錄轉回去
 >cd /usr/src/linux-5.15.137
 
 >vim include/linux/syscalls.h
@@ -102,7 +102,7 @@ Makefile 的內容
 
 然後直接make
 
-# 這個代表用12核心去編譯kernel
+>#這個代表用12核心去編譯kernel
 >make -j12
 
 把kernel安裝上去
