@@ -166,3 +166,52 @@ https://elixir.bootlin.com/linux/v5.15.137/source/tools/testing/scatterlist/linu
 
 >make install -j12
 
+
+# Q1 
+
+![image](https://github.com/user-attachments/assets/9f09a3f9-0fd7-4e87-9196-6831d7401ce2)
+
+PID：pid=1295是Parent Process的pid，表示目前運行的 Parent Process。
+
+PID：pid=1296是Child Process的pid。
+
+Virtual Address：0x55f574189010 是global variable global_a 對應的Virtual Address，為Process內存中Logical Memory位置，由系統分配。
+
+Physical Address：0x11300e010是global_a對應的 Physical Address，為Physical Memory的實際地址。
+
+(每次執行時Physical Address與Virtual Address不固定，主要原因與系統的安全性機制及內存管理策略有關)
+
+以上程式碼表現出copy-on-write的影響，從result可以看見在Before Fork、After Fork by parent、After by child中，global_a的logical address和physical address都相同，而最後copy on write in child的Physical Address 發生變化：當Child Process修改了 global_a 的值後，對應的 Physical Address 變成了0x115493010，表示觸發了Copy on Write，在 Child Process 中，當 global_a 被修改時，Kernel 會分配一個新的 Physical Address，這樣 Parent Process 和 Child Process 不再使用同一個 Physical Memory Page。因此 Child Process 的 Physical Address 變成0x115493010。
+
+# Q1_Bonus
+
+![image](https://github.com/user-attachments/assets/c1c0c714-621d-4c92-b393-854e6996a18c)
+
+execlp會取代目前執行的代碼，執行新的程式碼，而execlp 是在當前進度上執行另一個程式，並不會創建新的ID，所以pid保持不變。
+
+但執行execlp時系統會重建目前的記憶體空間以載入新程式的檔案，所以logical address會有變化。
+
+# Q2 
+
+![image](https://github.com/user-attachments/assets/e633267b-dc11-4fc1-809e-0cbc11a11a12)
+
+從結果可以看出只有a[0]有Physical address
+
+a[1999999]並沒有Physical address
+
+便可得知loader並沒有在一開始就將Physical address分配給陣列中的所有元素
+
+# Q2_Bonus
+
+![image](https://github.com/user-attachments/assets/a09c9967-f11f-48f1-bbff-90753e838e45)
+
+由結果可得知因為Lazy allocation的原因，所以系統只分配實體記憶體空間到a[1007]，從a[1008]開始就沒有被分配到實體記憶體空間
+
+Lazy allocation:當程式宣告變數或請求記憶體空間時，系統並不會立即分配實體記憶體空間，而是等到真正使用該記憶體時才進行分配。
+
+主要目的是提高效能和節省記憶體資源，當程式可能不會使用到所有宣告的記憶體時。透過Lazy allocation，系統可以避免不必要的記憶體佔用，並減少啟動時間或初始化時間
+
+
+
+
+
