@@ -26,7 +26,7 @@ sudo apt install build-essential libncurses-dev libssl-dev libelf-dev bison flex
 安裝vim
 
 >sudo apt install vim -y
->
+
 清除安裝的package
 
 >sudo apt clean && sudo apt autoremove -y
@@ -67,22 +67,19 @@ Makefile 的內容
 # 打開此目錄下的 Makefile
 
 >vim Makefile
->
-可以找到 core-y 如下圖
 
-註: vim編輯檔案的時候,可以用輸入 ?core-y 來找到core-y這個關鍵字
+可以找到 core-y 如下圖
 
 
 在最後面補上 hello 這樣 kernel 在編譯時才會到 hello 目錄
 
 >core-y += kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ hello/
->
+
 接下來要去修改 syscall_64.tbl 檔
 
 >vim arch/x86/entry/syscalls/syscall_64.tbl
->
-在最後一行添加上 system call，然後請把編號記住, 等一下會用
 
+在最後一行添加上 system call，然後請把編號記住, 等一下會用
 
 
 接著編輯 syscalls.h 檔，將 syscall 的原型添加進檔案 (#endif之前)
@@ -92,12 +89,7 @@ Makefile 的內容
 
 >vim include/linux/syscalls.h
 
-#加入一行(這行直接加在檔案的最下面就好)
-
-註: 在vim編輯檔案的時候 可以按shift+G就會跳到最後一行
-
 >asmlinkage long sys_hello(void);
-
 
 編譯 kernel
 可以用 make localmodconfig 來設定組態
