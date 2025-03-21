@@ -1,3 +1,7 @@
+# 完整筆記
+
+https://hackmd.io/@clayton46/ryXWqWrWJe/edit
+
 # 建立System Code #
 
 1.在linux-5.15.137裡面建立資料夾
