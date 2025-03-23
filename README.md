@@ -2,6 +2,8 @@
 
 https://hackmd.io/@clayton46/ryXWqWrWJe/edit
 
+#### 此project的目的是了解系統呼叫 (System Call) 的實作方式，並透過觀察記憶體管理機制，深入理解虛擬記憶體與實體記憶體之間的對應關係。並了解關於(Copy-On-Write, COW)和(Loader)實際操作會產生的狀況等
+
 
 # Linear address 轉成 Physical address 流程圖
 ![image](https://github.com/user-attachments/assets/55d5ceb4-fceb-4ac7-a66b-74fa29b5971f)
@@ -141,7 +143,9 @@ https://elixir.bootlin.com/linux/v5.15.137/source/tools/testing/scatterlist/linu
 >make install -j12
 
 
+
 # Q1 
+
 
 ![image](https://github.com/user-attachments/assets/9f09a3f9-0fd7-4e87-9196-6831d7401ce2)
 
