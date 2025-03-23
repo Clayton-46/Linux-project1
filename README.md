@@ -2,32 +2,6 @@
 
 https://hackmd.io/@clayton46/ryXWqWrWJe/edit
 
-# 建立System Code #
-
-1.在linux-5.15.137裡面建立資料夾
-
->mkdir my_get_physical_addresses
-
-![image](https://github.com/user-attachments/assets/db0b2065-caeb-4d9b-8a82-4e612fffb413)
-
-
-
-2.進入所建的資料夾
-
-> cd my_get_physical_addresses
-
-![image](https://github.com/user-attachments/assets/47bcf608-91d1-4510-939b-07242250f112)
-
-3.新增system call
-
-> touch my_get_physical_addresses.c
-
-![image](https://github.com/user-attachments/assets/3c73cdcb-2949-4033-8607-f7b1e6992a53)
-
-4.編輯my_get_physical_addresses.c
-
->vim my_get_physical_addresses.c
-
 
 # Linear address 轉成 Physical address 流程圖
 ![image](https://github.com/user-attachments/assets/55d5ceb4-fceb-4ac7-a66b-74fa29b5971f)
