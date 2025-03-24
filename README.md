@@ -18,6 +18,9 @@ https://elixir.bootlin.com/linux/v5.15.137/source/include/linux/syscalls.h#L223
 
 這個連結可以知道SYSCALL_DEFINEx
 
+![image](https://github.com/user-attachments/assets/df917295-a75d-41f8-9d0b-ffab7b081a42)
+
+
 (2)
 
 https://elixir.bootlin.com/linux/v5.15.137/source/arch/x86/include/asm/current.h
@@ -27,6 +30,9 @@ https://elixir.bootlin.com/linux/v5.15.137/source/arch/x86/include/asm/current.h
 #define current get_current()
 
 將 current 定義為 get_current() 函數的結果，這樣在程式碼中可以簡單地通過 current 獲取當前的任務結構指標。
+
+![image](https://github.com/user-attachments/assets/9f46d63c-e00c-4b80-9135-7a2fc5cbccf2)
+
 
 (3)
 
