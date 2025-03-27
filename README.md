@@ -4,6 +4,16 @@ https://hackmd.io/@clayton46/ryXWqWrWJe/edit
 
 #### 此project的目的是了解系統呼叫 (System Call) 的實作方式，並透過觀察記憶體管理機制，深入理解虛擬記憶體與實體記憶體之間的對應關係。並了解關於(Copy-On-Write, COW)和(Loader)實際操作會產生的狀況等
 
+#### Environment
+```
+OS: Ubuntu 22.04
+
+ARCH: X86_64
+
+Source Version: 5.15.137
+```
+
+
 
 # Linear address 轉成 Physical address 流程圖
 ![image](https://github.com/user-attachments/assets/55d5ceb4-fceb-4ac7-a66b-74fa29b5971f)
@@ -71,7 +81,7 @@ https://elixir.bootlin.com/linux/v5.15.137/source/include/linux/pgtable.h
 
 (一). none
 
->pgd_none(*pgd), p4d_none(*p4d), 等等。
+`pgd_none(*pgd), p4d_none(*p4d), 等等。`
 
 這些函數用於檢查特定頁表條目是否「不存在」。
 
@@ -81,7 +91,7 @@ https://elixir.bootlin.com/linux/v5.15.137/source/include/linux/pgtable.h
 
 (二). bad
 
->pgd_bad(*pgd), p4d_bad(*p4d), 等等。
+`pgd_bad(*pgd), p4d_bad(*p4d), 等等。`
 
 這些函數用於檢查頁表條目是否「無效」。
 
@@ -94,7 +104,7 @@ https://elixir.bootlin.com/linux/v5.15.137/source/include/linux/pgtable.h
 https://elixir.bootlin.com/linux/v5.15.137/source/tools/testing/scatterlist/linux/mm.h#L52
 
 這個連結可以知道
-
+```
 #define PAGE_SIZE (4096)
 
 #define PAGE_SHIFT (12)
@@ -102,6 +112,7 @@ https://elixir.bootlin.com/linux/v5.15.137/source/tools/testing/scatterlist/linu
 #define PAGE_MASK (~(PAGE_SIZE-1))
 
 #define page_to_pfn(page) ((unsigned long)(page) / PAGE_SIZE)
+```
 
 5.編輯完my_get_physical_addresses.c程式碼保存並退出
 在my_get_physical_addresses的資料夾下建立Makefile
@@ -123,31 +134,31 @@ https://elixir.bootlin.com/linux/v5.15.137/source/tools/testing/scatterlist/linu
 
 為450 common my_get_physical_addresses sys_my_get_physical_addresses
 
->vim arch/x86/entry/syscalls/syscall_64.tbl
+`vim arch/x86/entry/syscalls/syscall_64.tbl`
 
 ![image](https://github.com/user-attachments/assets/dac72f5e-b4b4-4ddc-876b-fa95324decac)
 
 
 
 8.編輯linux-5.15.137/include/linux/syscalls.h
-
+```
 >vim include/linux/syscalls.h
     
 >#在檔案最下方加入
 
 >asmlinkage long sys_my_get_physical_addresses(void *);    //要求的檔案型別
-
+```
 
 9.編譯kernel
 
->make -j12
+`make -j12`
 
 10.安裝kernel
-
+```
 >make modules_install -j12
 
 >make install -j12
-
+```
 
 
 # Q1 
